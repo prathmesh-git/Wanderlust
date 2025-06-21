@@ -190,3 +190,7 @@ body{
 .fa-magnifying-glass{
     display: inline;
 }
+
+.nav-link:hover{
+    text-decoration: underline;
+}
