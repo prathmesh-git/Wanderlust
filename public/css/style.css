@@ -1,0 +1,192 @@
+body{
+    overflow-x: hidden;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.navbar{
+    height: 5rem;
+    background-color: rgb(255, 255, 255);
+}
+
+.fa-compass{
+    height: 2rem;
+    color: #fe424d;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+/* footer */
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info-links, .f-info-socials, .f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 2rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* cards */
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem !important;
+    
+}
+
+.card-img-top{
+    border-radius: 1.5rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding:0 !important;
+}
+
+.card-text {
+    font-weight: 400 !important;
+     
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: aliceblue;
+}
+
+.add-btn, .edit-btn {
+    background-color:#fe424d !important;
+    border: none !important;
+}
+
+/* show */
+.show-img{
+    height: 30vh;
+}
+
+.btns {
+    display:flex;
+
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+ .custom-range::-webkit-slider-thumb {
+    background-color: #fe424d;
+    border: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #fe424d;
+    transition: 0.3s ease-in-out;
+  }
+
+  .custom-range::-moz-range-thumb {
+    background-color: #fe424d;
+    border: none;
+    border-radius: 50%;
+    width: 0.8rem;
+    height: 0.8rem;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #fe424d;
+    transition: 0.3s ease-in-out;
+  }
+
+  .custom-range::-webkit-slider-runnable-track,
+  .custom-range::-moz-range-track {
+    background: #dee2e6;
+    height: 0.35rem;
+    border-radius: 1rem;
+  }
+
+   .maplibregl-popup {
+    max-width: 250px;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .popup-card {
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .popup-title {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .popup-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .dropp{
+    background-color: #fe434d;
+    border-color: #fe434d;  /* Optional: to change the border color too */
+  }
+
+  #map{
+    height : 400px;
+    width: 120 vh;
+  }
+.nav-search{
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+    
+}
+.nav-button{
+    border-radius: 25px;
+    border-color: #fe434d; 
+    text-decoration: #fe424d;
+    text-align: center;
+    padding: 0 1rem 0 1rem;
+}
+.nav-button:hover{
+    background-color: #fe434d;
+    border-color: #fe434d; 
+    color: white;
+}
+.fa-magnifying-glass{
+    display: inline;
+}
