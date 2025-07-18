@@ -1,35 +1,43 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <h1 class="col-6 offset-3 mb-5">Login</h1>
-    <div class="col-6 offset-3">
-        <form action="/login" method="POST" class="needs-validation" novalidate>
-            <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input 
-                name="username"
-                id="username" 
-                type="text"
-                placeholder="Enter username" 
-                class="form-control mb-3" 
-                required
-                >
-
-
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <h1 class="text-center mb-4">Login</h1>
+      <form action="/login" method="POST" class="needs-validation" novalidate>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input 
-                name="password"
-                id="password" 
-                type="password"
-                placeholder="Enter password" 
-                class="form-control" 
-                required
-                >
+          <label for="username" class="form-label">Username</label>
+          <input 
+            name="username"
+            id="username"
+            type="text"
+            placeholder="Enter username"
+            class="form-control"
+            required
+          >
         </div>
-        <!-- <p>if you dont have an account, Sign up</p> -->
-        <button class="btn btn-success">Login</button>
-    
-        </form>
+        
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            name="password"
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success">Login</button>
+        </div>
+
+        <!-- Optional Signup Prompt -->
+        <p class="text-center mt-3 small">
+          Don't have an account? <a href="/register">Sign up</a>
+        </p>
+      </form>
     </div>
+  </div>
 </div>
