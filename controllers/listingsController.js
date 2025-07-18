@@ -6,9 +6,29 @@ const geocoding = maptilerClient.geocoding;
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
-}
+  const { q, filter } = req.query;
+  let query = {};
+
+  if (q) {
+    query.$or = [
+      { title: { $regex: q, $options: "i" } },
+      { description: { $regex: q, $options: "i" } },
+      { location: { $regex: q, $options: "i" } },
+    ];
+  }
+
+  if (filter) {
+    query.category = { $regex: filter, $options: "i" }; // make sure you store `category` in DB
+  }
+
+  const allListings = await Listing.find(query);
+
+  res.render("listings/index.ejs", {
+    allListings,
+    searchQuery: q || "",
+    currentFilter: filter || "",
+  });
+};
 
 module.exports.renderNewForm =  (req, res)=>{
     res.render("listings/new.ejs");

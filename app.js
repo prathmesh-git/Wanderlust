@@ -16,6 +16,8 @@ const flash = require("connect-flash")
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const searchListingRoutes = require("./routes/searchListing");
+
 
 
 const dbUrl = process.env.ATLASDB_URL;
@@ -102,6 +104,7 @@ app.use((err, req, res, next) => {
   res.status(status).render("error.ejs", { err });
 });
 
+app.use("/search", searchListingRoutes);
 
 //port
 const PORT = 3000;

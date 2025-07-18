@@ -9,14 +9,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse bg-white p-3 rounded " id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse bg-white p-3 rounded" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link ms-1" href="/listings">Explore</a>
       </div>
 
-      <div class="search-container" style="margin-left: 14rem ;">
-        <form class="d-flex mx-auto my-2 my-md-0" role="search" style="max-width: 400px; width: 100%;">
-          <input class="form-control me-2 nav-search" type="search" placeholder="Search destinations" aria-label="Search" />
+    
+      <div class="search-container" style="margin-left: 14rem;">
+        <form id="navSearchForm" class="d-flex mx-auto my-2 my-md-0" role="search" style="max-width: 400px; width: 100%;" action="/listings" method="GET">
+          <div style="width: 100%; position: relative;">
+            <input class="form-control me-2 nav-search" type="search" name="q" id="navSearchInput" placeholder="Search destinations" autocomplete="off" />
+            <ul id="suggestionList" class="list-group position-absolute w-100" style="z-index: 1000;"></ul>
+          </div>
           <button class="btn btn-search nav-button" type="submit">
             <i class="fa-solid fa-magnifying-glass me-1"></i>
           </button>
@@ -25,15 +29,70 @@
 
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Air bnb your home</a>
-          <% if (!currUser) { %>
-            <a class="btn btn-outline-success ms-2" href="/signup">Signup</a>
-            <a class="btn btn-outline-primary ms-2" href="/login">Login</a>
-          <% } %>
-
-          <% if (currUser) { %>
-            <a class="btn btn-outline-danger ms-2" href="/logout">Logout</a>
-          <% } %>
+        <% if (!currUser) { %>
+          <a class="btn btn-outline-success ms-2" href="/signup">Signup</a>
+          <a class="btn btn-outline-primary ms-2" href="/login">Login</a>
+        <% } %>
+        <% if (currUser) { %>
+          <a class="btn btn-outline-danger ms-2" href="/logout">Logout</a>
+        <% } %>
       </div>
     </div>
   </div>
 </nav>
+
+
+<script>
+  const searchInput = document.getElementById("navSearchInput");
+  const suggestionList = document.getElementById("suggestionList");
+
+  let debounceTimer;
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim();
+    clearTimeout(debounceTimer);
+
+    if (!query) {
+      suggestionList.innerHTML = "";
+      return;
+    }
+
+    debounceTimer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/search/suggestions?q=${encodeURIComponent(query)}`);
+
+        const suggestions = await res.json();
+
+        suggestionList.innerHTML = "";
+        suggestions.forEach(({ text }) => {
+          const li = document.createElement("li");
+          li.className = "list-group-item list-group-item-action";
+          li.textContent = text;
+          li.style.cursor = "pointer";
+          li.addEventListener("click", () => {
+            searchInput.value = text;
+            document.getElementById("navSearchForm").submit();
+          });
+          suggestionList.appendChild(li);
+        });
+      } catch (err) {
+        console.error("Error fetching suggestions:", err);
+      }
+    }, 300);
+  });
+
+  // Hide suggestion list when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("#navSearchForm")) {
+      suggestionList.innerHTML = "";
+    }
+  });
+</script>
+
+<style>
+  #suggestionList {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+</style>
