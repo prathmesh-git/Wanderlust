@@ -1,50 +1,63 @@
 <nav class="navbar navbar-expand-md border-bottom sticky-top shadow-sm bg-white">
   <div class="container-fluid">
+    <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center" href="/listings">
       <i class="fa-regular fa-compass fs-4 me-1"></i>
       <span class="fw-semibold ms-2">WanderLust</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- Left nav links -->
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <!-- Left Nav -->
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Explore</a>
+        </li>
+      </ul>
 
-      <!-- Search bar -->
-      <div class="d-flex w-100 justify-content-center my-2 my-md-0">
-        <form id="navSearchForm" class="d-flex w-100" style="max-width: 400px;" role="search" action="/listings" method="GET">
-          <div class="position-relative w-100">
-            <input class="form-control nav-search" type="search" name="q" id="navSearchInput" placeholder="Search destinations" autocomplete="off" />
-            <ul id="suggestionList" class="list-group position-absolute w-100 shadow-sm"></ul>
-          </div>
-          <button class="btn btn-search nav-button ms-2" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
-      </div>
+      <!-- Search Bar (Center) -->
+      <form id="navSearchForm" class="d-flex mx-auto my-2 my-md-0 w-100 justify-content-center" style="max-width: 400px;" action="/listings" method="GET" role="search">
+        <div class="position-relative w-100">
+          <input class="form-control nav-search" type="search" name="q" id="navSearchInput" placeholder="Search destinations" autocomplete="off" />
+          <ul id="suggestionList" class="list-group position-absolute w-100 shadow-sm"></ul>
+        </div>
+        <button class="btn btn-search nav-button ms-2" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
 
-      <!-- Right links -->
-      <div class="navbar-nav ms-md-auto mt-2 mt-md-0">
-        <a class="nav-link" href="/listings/new">Air bnb your home</a>
+      <!-- Right Nav -->
+      <ul class="navbar-nav ms-auto mt-2 mt-md-0 align-items-md-center text-center text-md-start">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Air bnb your home</a>
+        </li>
 
         <% if (!currUser) { %>
-          <a class="btn btn-outline-success ms-md-2 mt-2 mt-md-0" href="/signup">Signup</a>
-          <a class="btn btn-outline-primary ms-md-2 mt-2 mt-md-0" href="/login">Login</a>
+          <li class="nav-item mt-2 mt-md-0">
+            <a class="btn btn-outline-success ms-md-2" href="/signup">Signup</a>
+          </li>
+          <li class="nav-item mt-2 mt-md-0">
+            <a class="btn btn-outline-primary ms-md-2" href="/login">Login</a>
+          </li>
         <% } %>
 
         <% if (currUser) { %>
-          <a class="btn btn-outline-danger ms-md-2 mt-2 mt-md-0" href="/logout">Logout</a>
+          <li class="nav-item mt-2 mt-md-0">
+            <a class="btn btn-outline-danger ms-md-2" href="/logout">Logout</a>
+          </li>
         <% } %>
-      </div>
+      </ul>
     </div>
   </div>
 </nav>
 
+<!-- Autocomplete JS -->
 <script>
   const searchInput = document.getElementById("navSearchInput");
   const suggestionList = document.getElementById("suggestionList");
@@ -89,6 +102,7 @@
   });
 </script>
 
+<!-- Suggestion List Style -->
 <style>
   #suggestionList {
     max-height: 200px;
@@ -97,5 +111,16 @@
     border-top: none;
     z-index: 1000;
     background-color: #fff;
+  }
+
+  @media (max-width: 767.98px) {
+    .navbar-nav .btn {
+      width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 </style>
