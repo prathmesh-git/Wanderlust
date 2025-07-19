@@ -8,7 +8,7 @@
 
 
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+    <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
       aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -124,4 +124,18 @@
       padding-right: 0;
     }
   }
+
+    @media (max-width: 767.98px) {
+    .navbar-collapse {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+  @media (max-width: 767.98px) {
+  .navbar-nav .nav-link {
+    white-space: normal;   /* allow wrapping */
+    font-size: 14px;       /* shrink text slightly */
+  }
+}
 </style>
